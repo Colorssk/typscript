@@ -10,3 +10,4 @@ function f({a,b = 0} = {a: ''}):void{
     console.log('success')
 }
 f()
+

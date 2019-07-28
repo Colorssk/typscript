@@ -26,3 +26,12 @@ obj = {a:'1',b:'2'}
   对象的扩展符中，对象重复后面的会覆盖前面的
 
   定义函数参数，之后传参可以多传，但是指定的是必传的
+
+  只读属性:   interface obj = {
+    readonly x :string
+  }
+  let a:obj = {x:'1'}//初始化可以赋值
+
+  let arr:number[] = [1,2,3]
+  let ro: ReadonlyArray<number>
+  

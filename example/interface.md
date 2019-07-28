@@ -184,7 +184,7 @@ let mySquare = createSquare({ width: 100, opacity: 0.5 } as SquareConfig)
 interface SquareConfig {
   color?: string
   width?: number
-  [propName: string]: any
+  [propName: string]: any// 可选参数
 }
 ```
 
@@ -207,8 +207,8 @@ let mySquare = createSquare(squareOptions)
 为了使用接口表示函数类型，我们需要给接口定义一个调用签名。它就像是一个只有参数列表和返回值类型的函数定义。参数列表里的每个参数都需要名字和类型。
 
 ```typescript
-interface SearchFunc {
-  (source: string, subString: string): boolean
+interface SearchFunc {// 函数接口
+  (source: string, subString: string): boolean// 后面是返回类型
 }
 ```
 
@@ -216,7 +216,7 @@ interface SearchFunc {
 
 ```typescript
 let mySearch: SearchFunc
-mySearch = function(source: string, subString: string): boolean {
+mySearch = function(source: string, subString: string): boolean {// 定义的函数可以名字不同但是类型要相同
   let result = source.search(subString);
   return result > -1
 }
@@ -247,8 +247,8 @@ mySearch = function(src, sub) {
 与使用接口描述函数类型差不多，我们也可以描述那些能够“通过索引得到”的类型，比如 `a[10]` 或 `ageMap['daniel']`。 可索引类型具有一个 索引签名，它描述了对象索引的类型，还有相应的索引返回值类型。 让我们看一个例子：
 
 ```typescript
-interface StringArray {
-  [index: number]: string
+interface StringArray {// 索引签名
+  [index: number]: string//当用 `number` 去索引 `StringArray` 时会得到 `string` 类型的返回值。
 }
 
 let myArray: StringArray
@@ -271,7 +271,7 @@ class Dog extends Animal {
 
 // 错误：使用数值型的字符串索引，有时会得到完全不同的Animal!
 interface NotOkay {
-  [x: number]: Animal
+  [x: number]: Animal// number返回的一定要是string返回的子类型
   [x: string]: Dog
 }
 ```
