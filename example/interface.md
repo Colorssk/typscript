@@ -338,12 +338,12 @@ class Clock implements ClockInterface {
 
 ```typescript
 interface ClockConstructor {
-  new (hour: number, minute: number)
+  new (hour: number, minute: number)// 构造器是是静态类型，直接继承会报错
 }
 
 // error
 class Clock implements ClockConstructor {
-  currentTime: Date
+  currentTime: Date// 实例类型可以直接继承
   constructor(h: number, m: number) { }
 }
 ```
@@ -351,17 +351,17 @@ class Clock implements ClockConstructor {
 这里因为当一个类实现了一个接口时，只对其实例部分进行类型检查。`constructor` 存在于类的静态部分，所以不在检查的范围内。
 
 看下面的例子，我们定义了两个接口，  `ClockConstructor` 为构造函数所用和 `ClockInterface` 为实例方法所用。 为了方便我们定义一个构造函数 `createClock`，它用传入的类型创建实例。
-
-```typescript
+重要：接口的应用，工厂模式
+```typescript 
 interface ClockConstructor {
   new (hour: number, minute: number): ClockInterface
 }
 interface ClockInterface {
   tick()
 }
-
+// 工厂方法第一个参数是接口构造器
 function createClock(ctor: ClockConstructor, hour: number, minute: number): ClockInterface {
-  return new ctor(hour, minute)
+  return new ctor(hour, minute)// 返回一个构造器的实例对象
 }
 
 class DigitalClock implements ClockInterface {
@@ -413,7 +413,7 @@ interface PenStroke {
   penWidth: number
 }
 
-interface Square extends Shape, PenStroke {
+interface Square extends Shape, PenStroke {// 继承接口，多接口继承
   sideLength: number
 }
 
@@ -428,10 +428,10 @@ square.penWidth = 5.0
 先前我们提过，接口能够描述 JavaScript 里丰富的类型。 因为 JavaScript 其动态灵活的特点，有时你会希望一个对象可以同时具有上面提到的多种类型。
 
 一个例子就是，一个对象可以同时做为函数和对象使用，并带有额外的属性。
-
+重要：
 ```typescript
 interface Counter {
-  (start: number): string
+  (start: number): string //函数接口
   interval: number
   reset(): void
 }
