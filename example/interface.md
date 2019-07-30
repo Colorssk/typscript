@@ -431,7 +431,7 @@ square.penWidth = 5.0
 重要：
 ```typescript
 interface Counter {
-  (start: number): string //函数接口
+  (start: number):  函数接口
   interval: number
   reset(): void
 }
@@ -462,7 +462,7 @@ class Control {
   private state: any
 }
 
-interface SelectableControl extends Control {
+interface SelectableControl extends Control { //接口继承类
   select(): void
 }
 
@@ -475,7 +475,7 @@ class TextBox extends Control {
 }
 
 // Error：“ImageC”类型缺少“state”属性。
-class ImageC implements SelectableControl {
+class ImageC implements SelectableControl { // 接口
   select() { }
 }
 ```
@@ -483,3 +483,4 @@ class ImageC implements SelectableControl {
 
 在 `Control` 类内部，是允许通过 `SelectableControl` 的实例来访问私有成员 `state` 的。 实际上，`SelectableControl` 接口和拥有 `select` 方法的 `Control` 类是一样的。`Button`和 `TextBox` 类是 `SelectableControl` 的子类（因为它们都继承自`Control` 并有 `select` 方法），但 `ImageC` 类并不是这样的。
 
+continue...
