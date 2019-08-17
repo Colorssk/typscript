@@ -53,5 +53,17 @@ colorssk
     last([1,2,3,4,5]);
     // =>5
 
-continue......
+泛型中类型约束： k extends keyof T
+此时k是T的key
+泛型中类的类型约束(推断):相当于工厂模式
+    function createinstance<T entends Animal>(c: new()=>T):T{//c的类型是类
+        return new c()//实例化
+    }
+    createInsatnce(Lion).keeper.nametag
+    class Animal {
+        numLengs: number
+    }
+    class Lion extends Animal {
+        keeper: LionKeeper
+    }
 
