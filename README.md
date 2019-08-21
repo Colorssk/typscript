@@ -75,3 +75,6 @@ T&U
 function isNumber(x:any):x is Number{
     return typeof x == 'Number'//此时返回中typoeof后面跟的一定是number类型
 }// 当然typeof和instanceof本身自带类型保护
+
+类型断言中确定某个值不是Null
+return name!.CharAt(0)// 此时即使编译的时候--strictNullChecks也不会报错
