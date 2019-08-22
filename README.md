@@ -78,3 +78,5 @@ function isNumber(x:any):x is Number{
 
 类型断言中确定某个值不是Null
 return name!.CharAt(0)// 此时即使编译的时候--strictNullChecks也不会报错
+
+done
